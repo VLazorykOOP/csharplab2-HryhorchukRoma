@@ -151,31 +151,46 @@ class Program
     Console.WriteLine("Result: " + rez);
   }
   static void task4(){
-    Console.WriteLine("Enter size1 of array:");
-    int size1 = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("Enter size2 of array:");
-    int size2 = Convert.ToInt32(Console.ReadLine());
-    int[,] arr = new int[size1, size2];
-    int[] rezarr=new int[size2];
-    for (int i = 0; i < size1; i++)
-    {
-        for (int j = 0; j < size2; j++)
+    
+        Random rand = new Random();
+        Console.WriteLine("Enter size1 of array:");
+        int size1 = Convert.ToInt32(Console.ReadLine());
+        int size2 = 10;
+        int[,] arr = new int[size1, size2];
+        int[] rezarr = new int[size1];
+        for (int i = 0; i < size1; i++)
         {
-            Console.WriteLine("Enter element:");
-            arr[i, j] = Convert.ToInt32(Console.ReadLine());
+            int size3 = rand.Next(1, 11);
+            int[] acc = new int[size2];
+            for (int j = 0; j < size3; j++)
+            {
+                acc[j] = rand.Next(-5, 6);
+            }
+            for(int j=size3; j<size2; j++)
+            {
+                acc[j]=0;
+            }
+            for (int j = 0; j < size2; j++)
+            {
+                arr[i, j] = acc[j];
+            }
         }
-    }
-for(int i=0; i<size2; i++){
-      int acc = 0;
-      for(int j=0; j<size1; j++){
-        if(arr[j,i]<0){
-          acc += arr[j,i];
+    
+        for (int i = 0; i < size1; i++)
+        {
+            int acc = 0;
+            for (int j = 0; j < size1; j++)
+            {
+                if (arr[j, i] < 0)
+                {
+                    acc += arr[j, i];
+                }
+            }
+            rezarr[i] = acc;
         }
-      }
-      rezarr[i] = acc;
-}
-for(int i=0; i<size2; i++){
-  Console.WriteLine("Element " + "[ " + i + " ]: " + rezarr[i]);
-}
+        for (int i = 0; i < size1; i++)
+        {
+            Console.WriteLine("Element " + "[ " + i + " ]: " + rezarr[i]);
+        }
 }
   }
